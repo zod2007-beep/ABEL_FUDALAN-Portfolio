@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Sakura Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="auth-container">
+        <video autoplay muted loop playsinline class="auth-video-bg">
+            <source src="video/vid2.mp4" type="video/mp4">
+        </video>
+        <div class="auth-card">
+            <h1 class="auth-title">Welcome Back</h1>
+            <p class="auth-subtitle">Sign in to access your portfolio</p>
+            
+            <form id="signinForm" class="auth-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter your password">
+                </div>
+                
+                <div id="error-message" class="error-message"></div>
+                
+                <button type="submit" class="auth-button">Sign In</button>
+            </form>
+            
+            <p class="auth-link">
+                Don't have an account? <a href="signup.html">Sign Up</a>
+            </p>
+        </div>
+    </div>
+    
+    <script src="auth.js"></script>
+    <script>
+        // Check if already authenticated
+        checkAuth().then(user => {
+            if (user) {
+                window.location.href = 'index.html';
+            }
+        });
+        
+        // Handle sign in form
+        document.getElementById('signinForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('error-message');
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            
+            submitButton.disabled = true;
+            submitButton.textContent = 'Signing in...';
+            errorDiv.textContent = '';
+            
+            const result = await handleSignIn(email, password);
+            
+            if (result.success) {
+                window.location.href = 'index.html';
+            } else {
+                errorDiv.textContent = result.error;
+                submitButton.disabled = false;
+                submitButton.textContent = 'Sign In';
+            }
+        });
+    </script>
+</body>
+</html>
