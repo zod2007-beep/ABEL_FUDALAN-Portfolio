@@ -457,10 +457,7 @@ html {
 
 /* Logout button */
 .logout-button {
-    position: fixed;
-    top: 10px;
-    right: 20px;
-    padding: 10px 20px;
+    padding: 8px 16px;
     background: white;
     color: var(--sakura-pink);
     border: 2px solid var(--sakura-pink);
@@ -469,7 +466,6 @@ html {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    z-index: 1000;
 }
 
 .logout-button:hover {
