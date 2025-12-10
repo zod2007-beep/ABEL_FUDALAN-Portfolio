@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.removeItem("loggedIn");
 
             // Redirect to login page
-            window.location.href = "login.html";
+            window.location.href = "signin.html";
         });
     }
 });
