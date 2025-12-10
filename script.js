@@ -29,3 +29,18 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+// Logout logic
+document.addEventListener("DOMContentLoaded", () => {
+    const logoutBtn = document.getElementById("logoutBtn");
+    
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+            // Clear login state (adjust if you use different storage)
+            localStorage.removeItem("loggedIn");
+
+            // Redirect to login page
+            window.location.href = "login.html";
+        });
+    }
+});
